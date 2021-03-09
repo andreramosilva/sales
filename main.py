@@ -15,7 +15,7 @@ if __name__ == '__main__':
     print("You got a few options here:")
     print("Register a new Sale(1)")
     print("Ranking of sales (2)")
-    print("upate sale (3)")
+    print("delete sale (3)")
     option = input("Type your number option here: ")
 
     if int(option) == 1:
@@ -39,9 +39,21 @@ if __name__ == '__main__':
     elif int(option) == 2:
         print("You choose ranking of sales (2):")
         result = con.Storage().show_ranking_sales()
-        print(result)
+        for x in result:
+            print(x)
     elif int(option) == 3:
-        pass
+        print("Delete sale...")
+        know = input("Do you know the sale id(y/n)?")
+        if know == "y":
+            sale_id = input("Type the sale_id here: ")
+            con.Storage.delete(sale_id)
+        else:
+            print("You can find your sale on the ranking down here:")
+            ranking = con.Storage.show_ranking_sales()
+            for x in ranking:
+                print(x)
+            sale_id = input("Type the sale_id here: ")
+            con.Storage.delete(sale_id)
     else:
         print("you have to pick a valid option number !")
 

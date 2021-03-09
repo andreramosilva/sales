@@ -79,10 +79,6 @@ class Storage():
                 cursor.close()
                 print("MySQL connection is closed")
 
-        #return (records)
-
-
-#sql_select_Query = "INSERT INTO sales (product,seller_id,costumer_name,sale_value)  VALUES('{}','{}','{}',{})".format(produto, seller_name, costumer_name, sale_value)
 
     def populate(self, produto, seller_name,costumer_name,sale_value):
         seller_name = str(seller_name)
@@ -97,7 +93,7 @@ class Storage():
             val = (produto, seller_name, costumer_name, sale_value)
             cursor = connection.cursor()
             cursor.execute(sql_select_query,val)
-            #records = cursor.fetchall()
+
             connection.commit()
 
 
@@ -110,8 +106,35 @@ class Storage():
                 connection.close()
                 cursor.close()
                 print("MySQL connection is closed")
-        return ("Cadastrado com sucesso.")
+        return ("registered.")
 
+
+    def delete(self, sale_id):
+
+        try:
+            connection = mysql.connector.connect(host='localhost',
+                                                 database='db_sales',
+                                                 user='root',
+                                                 password='rootpassword')
+
+            sql_select_query = "DELETE FROM sales WHERE id = %s"
+            val = (sale_id)
+            cursor = connection.cursor()
+            cursor.execute(sql_select_query,val)
+
+            connection.commit()
+
+
+
+
+        except Error as e:
+            print("Error reading data from MySQL table", e)
+        finally:
+            if (connection.is_connected()):
+                connection.close()
+                cursor.close()
+                print("MySQL connection is closed")
+        return ("Deleted.")
 
 
 

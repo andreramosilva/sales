@@ -1,14 +1,14 @@
 Created By: Andre Ramos da Silva
 
-Docker compose com versão 5.7 do MySQL e o Adminer
+Docker compose com version 5.7 do MySQL e o Adminer
 
-iniciando, criando img e etc: docker-compose up -d
+startging, creating img and etc: docker-compose up -d
 
-confifmando a rede do mysql: docker network ls
+confirming a network  mysql: docker network ls
 
-confirmando que esta ativo (porta 3306) e do Adminer (porta 8080): docker-compose ps
+confirming activation mysql (porta 3306) and Adminer (porta 8080): docker-compose ps
 
-preparando o mysql server
+preparing  mysql server
 
 Via Adminer
 
@@ -17,5 +17,10 @@ Go to http://localhost:8080 or http://127.0.0.1:8080 and fill the credential. Us
 
 password: rootpassword
 
-no lado esquerdo va em importar, selecione o arquivo "scripts_sql.sql" e clique em executar.
+on the left go to import (importar), select the file o arquivo "bd.sql" and click on excute (executar).
 
+your database will be ready with the 5 sellers already in there.
+
+you can just run the main file and use the instructions on the screen to navegate.
+
+we have a couple basic functions(show ranking of sales and register new sale)
