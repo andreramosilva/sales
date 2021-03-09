@@ -92,14 +92,13 @@ class Storage():
                                                  database='db_sales',
                                                  user='root',
                                                  password='rootpassword')
-            # TODO: resolver query no codigo
-            query = "INSERT INTO sales (product,seller_id,costumer_name,sale_value)  VALUES('"+produto+"','"+seller_name+"','"+costumer_name+"',"+sale_value+")"#.format(produto, seller_name, costumer_name, sale_value)
 
-            sql_select_query = "INSERT INTO sales (product,seller_id,costumer_name,sale_value)  VALUES('{}','{}','{}',{})".format(produto, seller_name, costumer_name, sale_value)
-            print(sql_select_query)
+            sql_select_query = "INSERT INTO sales (product,seller_id,costumer_name,sale_value)  VALUES(%s,%s,%s,%s)"#.format(produto, seller_name, costumer_name, sale_value)
+            val = (produto, seller_name, costumer_name, sale_value)
             cursor = connection.cursor()
-            cursor.execute(sql_select_query)
+            cursor.execute(sql_select_query,val)
             #records = cursor.fetchall()
+            connection.commit()
 
 
 
