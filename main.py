@@ -9,15 +9,8 @@ def print_logo():
 
     print('...')
 
-if __name__ == '__main__':
-    print('Welcome to our sales sistem!!')
-    print_logo()
-    print("You got a few options here:")
-    print("Register a new Sale(1)")
-    print("Ranking of sales (2)")
-    print("delete sale (3)")
-    option = input("Type your number option here: ")
 
+def inicial_func(option):
     if int(option) == 1:
         print("You picked new sale (1):")
         print("You need to type the information as required: ")
@@ -28,6 +21,9 @@ if __name__ == '__main__':
         value = input("Sale Value: ")
         clas_stor = con.Storage()
         seller_id = clas_stor.get_seller(seller)
+        if seller_id == []:
+            print("Error seller: {} is not a valid seller".format(seller))
+            inicial_func(option)
         seller_id = seller_id[0][0]
         #
         print(seller_id)
@@ -35,7 +31,8 @@ if __name__ == '__main__':
             result = clas_stor.populate(product, seller_id, costumer, float(value))
             print(result)
         else:
-            print("Error seller is not a valid seller")
+            print("Error seller: {} is not a valid seller".format(seller))
+            inicial_func(option)
     elif int(option) == 2:
         print("You choose ranking of sales (2):")
         result = con.Storage().show_ranking_sales()
@@ -56,4 +53,16 @@ if __name__ == '__main__':
             con.Storage.delete(sale_id)
     else:
         print("you have to pick a valid option number !")
+
+if __name__ == '__main__':
+    print('Welcome to our sales sistem!!')
+    print_logo()
+    print("You got a few options here:")
+    print("Register a new Sale(1)")
+    print("Ranking of sales (2)")
+    print("delete sale (3)")
+    option = input("Type your number option here: ")
+    inicial_func(option)
+
+
 
